@@ -64,7 +64,7 @@ class Predictor(BasePredictor):
 
         input_id, attention_mask = self.bert_encode([description_cleaned], 60)
         sim_score = self.get_similarity(concept, description)
-        if sim_score >= 0.6:
+        if sim_score >= 0.5:
             grade = self.description_model.predict((input_id,attention_mask))[0][0]*10*369
             response_dict = {'text': description,'score': float(grade), 'context': 1, 'contextScore': sim_score}
 
